@@ -1,0 +1,43 @@
+#!groovy
+
+pipeline {
+    agent { label 'yongqing_agent' }
+    environment {
+        MACHINE_TYPE='raspberrypi3'
+    }
+    parameters {
+        string(name: 'BASEOS_JOBNAME', defaultValue: '', description: 'baseos name')
+        string(name: 'BASEOS_BUILD_NUMBER', defaultValue: '', description: 'baseos build number')
+        string(name: 'OUT_ARM_BUILD_NUMBER', defaultValue: '', description: 'out_arm build number')
+        string(name: 'OUT_ARM_JOBNAME', defaultValue: '', description: 'out_arm jobname')
+    }
+    stages {
+        stage('init') {
+            steps {
+                sh './build.sh init'
+            }
+        }
+        stage('download') {
+            steps {
+                sh './build.sh download'
+            }
+        }
+        stage('build') {
+            steps {
+                sh './build.sh build'
+            }
+        }
+        stage('zipfile') {
+            steps {
+                sh './build.sh zipfile'
+            }
+        }
+        
+        stage('publish') {
+            steps {
+                sh './build.sh publish'
+            }
+
+        }
+    }
+}

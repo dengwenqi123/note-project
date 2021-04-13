@@ -9,7 +9,7 @@
     
     # 下载一个项目和它的整个代码历史
     $ git clone [url]
-    
+
 #### 配置
     # 显示当前的Git配置
     $ git config --list
@@ -20,7 +20,7 @@
     # 设置提交代码时的用户信息
     $ git config [--global] user.name "[name]"
     $ git config [--global] user.email "[email address]"
-    
+
 #### 增加/删除文件
     # 添加指定文件到暂存区
     $ git add [file1] [file2] ...
@@ -43,7 +43,7 @@
     
     # 改名文件，并且将这个改名放入暂存区
     $ git mv [file-original] [file-renamed]
-    
+
 #### 代码提交
     # 提交暂存区到仓库区
     $ git commit -m [message]
@@ -63,7 +63,7 @@
     
     # 重做上一次commit，并包括指定文件的新变化
     $ git commit --amend [file1] [file2] ...
-    
+
 #### 分支
     # 列出所有本地分支
     $ git branch
@@ -107,7 +107,7 @@
     # 删除远程分支
     $ git push origin --delete [branch-name]
     $ git branch -dr [remote/branch]
-    
+
 #### 标签
     # 列出所有tag
     $ git tag
@@ -252,3 +252,156 @@
     暂时将未提交的变化移除，稍后再移入
     $ git stash
     $ git stash pop
+#### 删除远端分支
+
+```bash
+git push origin --delete [branch_name]
+```
+
+#### Git 全局设置:
+
+```
+git config --global user.name "Admin"
+git config --global user.email "wenqi@megacredit.cc"
+```
+
+#### 创建 git 仓库:
+
+```
+mkdir learn-git
+cd learn-git
+git init
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin https://gitee.com/bjmxzykj_admin/learn-git.git
+git push -u origin master
+```
+
+#### 已有项目
+
+```
+cd existing_git_repo
+git remote add origin https://gitee.com/bjmxzykj_admin/learn-git.git
+git push -u origin master
+```
+
+#### git mirror 操作 
+
+将github项目mirror到gitlab 仓库中
+
+```bash
+git config --global user.name "user_name"
+git config --global user.email "xxx@mail.com"
+git_name=`get_git_name $2 $1`
+base_url="https://github.com/dengwenqi123/${git_name}.git"
+
+git remote remove mirror
+git fetch --all > /dev/null
+git remote add mirror $base_url
+
+git push mirror --all
+git push --mirror $base_url
+```
+
+#### git mirror 方式二
+
+1. ##### 从原地址克隆一份裸版本库，比如原本托管于 GitHub，或者是本地的私有仓库
+
+```bash
+git clone --bare git://192.168.10.XX/git_repo/project_name.git
+```
+
+2. ##### 然后到新的 Git 服务器上创建一个新项目，比如 GitCafe，亦或是本地的私有仓库，如192.168.20.XX
+
+```bash
+cd /path/to/path/
+mkdir new_project_name.git
+git init --bare new_project_name.git
+```
+
+3. ##### 以镜像推送的方式上传代码到 GitCafe 服务器上
+
+```bash
+cd project_name.git
+git push --mirror git@192.168.20.XX/path/to/path/new_project_name.git
+```
+
+### git 查找仓库中指定文件
+
+```bash
+git grep 'contains.*MACHINE_FEATURES.*feature'
+```
+
+### Git 常用命令
+
+```bash
+git config -l
+#查看本地配置
+git config --system --list
+git config --global --list
+#新建一个分支并切换分支
+git checkout -b new_branch
+#删除当前分支
+git branch -d 
+git log --oneline --all --graph -15
+git commit -am 'add bugfix
+git c'
+```
+
+![image-20210123221325481](/Users/dengwenqi/Library/Application Support/typora-user-images/image-20210123221325481.png)
+
+![image-20210123222133067](/Users/dengwenqi/Library/Application Support/typora-user-images/image-20210123222133067.png)
+
+master主分支应该非常稳定，用来发布新版本，一般情况下不准许在上面工作，工作一般情况下在新建的dev分支上工作，工作完后，比如要发布，或者说dev分支代码稳定后可以合并到主分支master上来。
+
+rebase 永远不会导致多个历史分支进行交织，它永远都是一条线，纯洁而又干脆
+
+### git下载所有分支
+
+```bash
+git branch -a | grep origin | grep -v HEAD | while read rb;do lb=$(echo ${rb} | cut -d/ -f 3-);git checkout -b $lb $rb;done
+
+git push gitlab --all --force
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
