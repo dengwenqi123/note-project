@@ -21,5 +21,6 @@ INSERT INTO `user` VALUES (10000, 0, 'STOMA_GREATER_10', 0, 1000);
 
 ```mysql
 ALTER TABLE sp_reply_rule ADD COLUMN associated_message VARCHAR(1000) DEFAULT NULL COMMENT '关联消息';
+ALTER TABLE `sp_account_bind` ADD unique(`outer_sa_id`);
 ```
 
