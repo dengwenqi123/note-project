@@ -349,9 +349,9 @@ git commit -am 'add bugfix
 git c'
 ```
 
-![image-20210123221325481](/Users/dengwenqi/Library/Application Support/typora-user-images/image-20210123221325481.png)
+![image-20210123221325481](../images/image-20210123221325481.png)
 
-![image-20210123222133067](/Users/dengwenqi/Library/Application Support/typora-user-images/image-20210123222133067.png)
+![image-20210123222133067](../images/image-20210123222133067.png)
 
 master主分支应该非常稳定，用来发布新版本，一般情况下不准许在上面工作，工作一般情况下在新建的dev分支上工作，工作完后，比如要发布，或者说dev分支代码稳定后可以合并到主分支master上来。
 
