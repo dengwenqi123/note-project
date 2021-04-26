@@ -363,6 +363,8 @@ rebase 永远不会导致多个历史分支进行交织，它永远都是一条�
 git branch -a | grep origin | grep -v HEAD | while read rb;do lb=$(echo ${rb} | cut -d/ -f 3-);git checkout -b $lb $rb;done
 
 git push gitlab --all --force
+一次性推送全部尚未推送到远程的本地标签： 
+git push origin --tags
 ```
 
 
